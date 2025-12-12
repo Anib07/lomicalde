@@ -1,0 +1,52 @@
+ASSETS NECESARIOS PARA EL PROYECTO
+===================================
+
+El cliente debe proporcionar los siguientes archivos:
+
+1. VIDEO DE FONDO (Hero Section)
+   - Ubicación: assets/video/hero-video.mp4
+   - Especificaciones: 4K, formato MP4, optimizado para web
+   - Duración recomendada: 10-30 segundos en loop
+   - Peso máximo: 10MB (comprimido)
+
+2. IMÁGENES DE PRODUCTOS
+   Ubicación: assets/images/
+   
+   Lomitos:
+   - lomito1.jpg (Lomito Completo)
+   - lomito2.jpg (Lomito Especial)
+   
+   Hamburguesas:
+   - hamburguesa1.jpg (Hamburguesa Clásica)
+   - hamburguesa2.jpg (Hamburguesa BBQ)
+   
+   Papas:
+   - papas1.jpg (Papas Fritas Grandes)
+   - papas2.jpg (Papas con Cheddar y Panceta)
+   
+   Bebidas:
+   - coca.jpg (Coca Cola)
+   - jugo.jpg (Jugo Natural)
+   
+   Postres:
+   - brownie.jpg (Brownie con Helado)
+   
+   Ofertas:
+   - combo.jpg (Combo Familiar)
+   
+   Otros:
+   - about.jpg (Foto de la cocina/local para sección "Nosotros")
+
+   Especificaciones:
+   - Formato: JPG o PNG
+   - Resolución mínima: 800x600px
+   - Peso máximo por imagen: 500KB
+   - Fondo limpio, buena iluminación
+
+3. LOGO
+   - Ubicación: assets/images/logo.png
+   - Formato: PNG con transparencia
+   - Tamaños: 512x512px (alta resolución)
+
+NOTA: Actualmente el sistema usa placeholder.svg como imagen por defecto
+para productos sin imagen. Reemplazar con imágenes reales para producción.

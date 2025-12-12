@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lomitería Calde - Pedí Online</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>Lomitería Calde</h1>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#menu" class="nav-link">Menú</a>
+                <a href="#nosotros" class="nav-link">Nosotros</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
+                <button class="btn-language" id="btnLanguage">ES / GU</button>
+                <button class="btn-login" id="btnLogin">Ingresar</button>
+            </div>
+            <div class="nav-cart">
+                <button class="btn-cart" id="btnCart">
+                    🛒 <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+            <button class="nav-toggle" id="navToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section con Video -->
+    <section class="hero" id="inicio">
+        <div class="hero-video-container">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="assets/video/video2h.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title" data-es="Los Mejores Lomitos de la Ciudad" data-gu="Táva Lomito Iporãvéva">Los Mejores Lomitos de la Ciudad</h1>
+            <p class="hero-subtitle" data-es="Sabor auténtico, calidad premium" data-gu="Hembiasakue añetegua, calidad premium">Sabor auténtico, calidad premium</p>
+            <button class="btn-cta" onclick="scrollToMenu()" data-es="Ordená Ahora" data-gu="Eñemohenda Ko'ãga">Ordená Ahora</button>
+        </div>
+    </section>
+
+    <!-- Categorías -->
+    <section class="categories" id="categorias">
+        <div class="container">
+            <h2 class="section-title" data-es="Nuestras Categorías" data-gu="Ore Categoría-kuéra">Nuestras Categorías</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="filterCategory('lomitos')">
+                    <div class="category-icon">🥖</div>
+                    <h3 data-es="Lomitos" data-gu="Lomito-kuéra">Lomitos</h3>
+                </div>
+                <div class="category-card" onclick="filterCategory('hamburguesas')">
+                    <div class="category-icon">🍔</div>
+                    <h3 data-es="Hamburguesas" data-gu="Hamburguesa-kuéra">Hamburguesas</h3>
+                </div>
+                <div class="category-card" onclick="filterCategory('papas')">
+                    <div class="category-icon">🍟</div>
+                    <h3 data-es="Papas" data-gu="Mandio-kuéra">Papas</h3>
+                </div>
+                <div class="category-card" onclick="filterCategory('bebidas')">
+                    <div class="category-icon">🥤</div>
+                    <h3 data-es="Bebidas" data-gu="Hy'a-kuéra">Bebidas</h3>
+                </div>
+                <div class="category-card" onclick="filterCategory('postres')">
+                    <div class="category-icon">🍰</div>
+                    <h3 data-es="Postres" data-gu="Tembi'u he'ẽ">Postres</h3>
+                </div>
+                <div class="category-card" onclick="filterCategory('ofertas')">
+                    <div class="category-icon">⭐</div>
+                    <h3 data-es="Ofertas" data-gu="Ñemuhã">Ofertas</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menú de Productos -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <h2 class="section-title" data-es="Nuestro Menú" data-gu="Ore Tembi'u">Nuestro Menú</h2>
+            <div class="menu-filter">
+                <button class="filter-btn active" onclick="filterCategory('todos')" data-es="Todos" data-gu="Opavave">Todos</button>
+                <button class="filter-btn" onclick="filterCategory('lomitos')" data-es="Lomitos" data-gu="Lomito-kuéra">Lomitos</button>
+                <button class="filter-btn" onclick="filterCategory('hamburguesas')" data-es="Hamburguesas" data-gu="Hamburguesa-kuéra">Hamburguesas</button>
+                <button class="filter-btn" onclick="filterCategory('papas')" data-es="Papas" data-gu="Mandio-kuéra">Papas</button>
+                <button class="filter-btn" onclick="filterCategory('bebidas')" data-es="Bebidas" data-gu="Hy'a-kuéra">Bebidas</button>
+                <button class="filter-btn" onclick="filterCategory('postres')" data-es="Postres" data-gu="Tembi'u he'ẽ">Postres</button>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Productos se cargan dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Nosotros -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title" data-es="Sobre Nosotros" data-gu="Ore Rehegua">Sobre Nosotros</h2>
+                    <p data-es="Desde 2010, nos dedicamos a ofrecer los mejores lomitos y hamburguesas de la ciudad. Nuestra pasión es la calidad: ingredientes frescos, recetas tradicionales y un servicio excepcional." data-gu="2010 guive, roñemomba'apo rome'ẽ hag̃ua umi lomito ha hamburguesa iporãvéva táva pegua. Ore ñe'ẽ porã ha'e pe calidad: mba'e porã ipyahu, tembi'u tembiasakue ymaguare ha mba'apoha iporãitereíva.">
+                        Desde 2010, nos dedicamos a ofrecer los mejores lomitos y hamburguesas de la ciudad. Nuestra pasión es la calidad: ingredientes frescos, recetas tradicionales y un servicio excepcional.
+                    </p>
+                    <p data-es="Cada producto es preparado con amor y dedicación por nuestro equipo de expertos. Creemos que la buena comida une a las personas y crea momentos inolvidables." data-gu="Peteĩteĩva tembi'u ojejapo mborayhu ha ñemomba'apo rupive ore equipo experto-kuéra rupive. Rojepy'amongeta tembi'u porã ombojoaju tapicha ha omoheñói momento ndojehechaukavéiva.">
+                        Cada producto es preparado con amor y dedicación por nuestro equipo de expertos. Creemos que la buena comida une a las personas y crea momentos inolvidables.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <img src="assets/images/cocina.jpg" alt="Nuestra cocina">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title" data-es="Contacto" data-gu="Ñe'ẽ">Contacto</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3 data-es="📍 Dirección" data-gu="📍 Kundaharape">📍 Dirección</h3>
+                        <p>Av. Principal 1234, Asunción</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3 data-es="📞 Teléfono" data-gu="📞 Pumbyry">📞 Teléfono</h3>
+                        <p>+595 21 123 4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3 data-es="🕒 Horario" data-gu="🕒 Aravo">🕒 Horario</h3>
+                        <p data-es="Lunes a Domingo: 11:00 - 23:00" data-gu="Arakõi guive Arateĩ peve: 11:00 - 23:00">Lunes a Domingo: 11:00 - 23:00</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3 data-es="🌐 Redes Sociales" data-gu="🌐 Ñanduti">🌐 Redes Sociales</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link">Facebook</a>
+                            <a href="#" class="social-link">Instagram</a>
+                            <a href="#" class="social-link">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 data-es="Envianos un mensaje" data-gu="Emondo oreve peteĩ ñe'ẽmondo">Envianos un mensaje</h3>
+                    <form id="contactForm">
+                        <input type="text" placeholder="Nombre" data-placeholder-es="Nombre" data-placeholder-gu="Téra" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="tel" placeholder="Teléfono" data-placeholder-es="Teléfono" data-placeholder-gu="Pumbyry" required>
+                        <textarea placeholder="Mensaje" data-placeholder-es="Mensaje" data-placeholder-gu="Ñe'ẽmondo" rows="5" required></textarea>
+                        <button type="submit" class="btn-submit" data-es="Enviar" data-gu="Mondo">Enviar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.4984!2d-57.5759!3d-25.2637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDE1JzQ5LjMiUyA1N8KwMzQnMzMuMiJX!5e0!3m2!1sen!2spy!4v1234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Lomitería Premium. <span data-es="Todos los derechos reservados." data-gu="Opavave derecho oñeñongatu.">Todos los derechos reservados.</span></p>
+        </div>
+    </footer>
+
+    <!-- Modal de Carrito -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-es="Tu Carrito" data-gu="Nde Karrito">Tu Carrito</h2>
+                <button class="btn-close" onclick="closeCart()">✕</button>
+            </div>
+            <div class="modal-body" id="cartItems">
+                <!-- Items del carrito -->
+            </div>
+            <div class="modal-footer">
+                <div class="cart-total">
+                    <span data-es="Total:" data-gu="Opavave:">Total:</span>
+                    <span id="cartTotal">Gs. 0</span>
+                </div>
+                <button class="btn-checkout" onclick="goToCheckout()" data-es="Proceder al Pago" data-gu="Eho Jehepyme'ẽ">Proceder al Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Producto -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="productModalTitle"></h2>
+                <button class="btn-close" onclick="closeProductModal()">✕</button>
+            </div>
+            <div class="modal-body" id="productModalBody">
+                <!-- Detalles del producto -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2 data-es="Iniciar Sesión" data-gu="Eike">Iniciar Sesión</h2>
+                <button class="btn-close" onclick="closeLogin()">✕</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Contraseña" data-placeholder-es="Contraseña" data-placeholder-gu="Ñe'ẽñemi" required>
+                    <button type="submit" class="btn-submit" data-es="Ingresar" data-gu="Eike">Ingresar</button>
+                    <p class="form-link"><a href="register.html" data-es="¿No tenés cuenta? Registrate" data-gu="¿Ndererekói cuenta? Eñemboheraguapy">¿No tenés cuenta? Registrate</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

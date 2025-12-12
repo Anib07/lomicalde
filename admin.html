@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - Lomitería Premium</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <h2>Panel Admin</h2>
+            </div>
+            <nav class="admin-nav">
+                <a href="#dashboard" class="admin-nav-link active" onclick="showSection('dashboard')">
+                    📊 Dashboard
+                </a>
+                <a href="#pedidos" class="admin-nav-link" onclick="showSection('pedidos')">
+                    📦 Pedidos
+                </a>
+                <a href="#productos" class="admin-nav-link" onclick="showSection('productos')">
+                    🍔 Productos
+                </a>
+                <a href="#reportes" class="admin-nav-link" onclick="showSection('reportes')">
+                    📈 Reportes
+                </a>
+                <a href="index.html" class="admin-nav-link">
+                    🏠 Volver al Sitio
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1 id="sectionTitle">Dashboard</h1>
+                <div class="admin-user">
+                    <span>Admin</span>
+                    <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+                </div>
+            </header>
+
+            <!-- Dashboard -->
+            <section id="dashboard" class="admin-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="totalPedidos">0</div>
+                            <div class="stat-label">Pedidos Hoy</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="ventasHoy">Gs. 0</div>
+                            <div class="stat-label">Ventas Hoy</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="pedidosPendientes">0</div>
+                            <div class="stat-label">Pendientes</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="pedidosCompletados">0</div>
+                            <div class="stat-label">Completados</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-charts">
+                    <div class="chart-card">
+                        <h3>Pedidos Recientes</h3>
+                        <div id="recentOrders" class="recent-orders">
+                            <!-- Se cargan dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pedidos -->
+            <section id="pedidos" class="admin-section">
+                <div class="section-actions">
+                    <div class="filter-group">
+                        <select id="filterEstado" onchange="filterOrders()">
+                            <option value="todos">Todos los estados</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="preparando">Preparando</option>
+                            <option value="listo">Listo</option>
+                            <option value="entregado">Entregado</option>
+                            <option value="cancelado">Cancelado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="orders-list" id="ordersList">
+                    <!-- Pedidos se cargan dinámicamente -->
+                </div>
+            </section>
+
+            <!-- Productos -->
+            <section id="productos" class="admin-section">
+                <div class="section-actions">
+                    <button class="btn-primary" onclick="showAddProductModal()">
+                        ➕ Agregar Producto
+                    </button>
+                </div>
+
+                <div class="products-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Disponible</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <!-- Productos se cargan dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Reportes -->
+            <section id="reportes" class="admin-section">
+                <div class="report-filters">
+                    <select id="reportPeriod" onchange="generateReport()">
+                        <option value="hoy">Hoy</option>
+                        <option value="semana">Esta Semana</option>
+                        <option value="mes">Este Mes</option>
+                    </select>
+                </div>
+
+                <div class="report-cards">
+                    <div class="report-card">
+                        <h3>Ventas Totales</h3>
+                        <div class="report-value" id="reportVentas">Gs. 0</div>
+                    </div>
+                    <div class="report-card">
+                        <h3>Productos Más Vendidos</h3>
+                        <div id="topProducts">
+                            <!-- Se cargan dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal de cambio de estado -->
+    <div class="modal" id="statusModal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>Cambiar Estado del Pedido</h2>
+                <button class="btn-close" onclick="closeStatusModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <select id="newStatus" class="status-select">
+                    <option value="pendiente">Pendiente</option>
+                    <option value="preparando">Preparando</option>
+                    <option value="listo">Listo</option>
+                    <option value="entregado">Entregado</option>
+                    <option value="cancelado">Cancelado</option>
+                </select>
+                <button class="btn-submit" onclick="updateOrderStatus()">Actualizar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
